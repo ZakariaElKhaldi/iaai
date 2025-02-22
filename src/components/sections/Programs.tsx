@@ -1,6 +1,7 @@
 import Card from '../common/Card'
 import { Icons } from '../common/Icons'
 import AnimateOnScroll from '../common/AnimateOnScroll'
+import TiltCard from '../common/TiltCard'
 
 const programs = [
   {
@@ -52,12 +53,14 @@ const Programs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {programs.map((program, index) => (
             <AnimateOnScroll key={index} delay={index * 0.1}>
-              <Card
-                title={program.title}
-                description={program.description}
-                icon={program.icon}
-                className="hover:transform hover:scale-[1.02] transition-all duration-300"
-              />
+              <TiltCard className="h-full">
+                <Card
+                  title={program.title}
+                  description={program.description}
+                  icon={program.icon}
+                  className="h-full hover:transform-none"
+                />
+              </TiltCard>
             </AnimateOnScroll>
           ))}
         </div>
