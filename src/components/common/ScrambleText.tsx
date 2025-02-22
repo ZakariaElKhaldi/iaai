@@ -23,23 +23,20 @@ const ScrambleText = ({
     
     timeout = setTimeout(() => {
       interval = setInterval(() => {
-        setDisplayText(prev => {
-          const result = text.split('')
-            .map((_, i) => {
-              if (i < iteration) {
-                return text[i]
-              }
-              return characters[Math.floor(Math.random() * characters.length)]
-            })
-            .join('')
-          
-          if (iteration >= text.length) {
-            clearInterval(interval)
-          }
-          
-          iteration += 1/3
-          return result
-        })
+        setDisplayText(text.split('')
+          .map((_, i) => {
+            if (i < iteration) {
+              return text[i]
+            }
+            return characters[Math.floor(Math.random() * characters.length)]
+          })
+          .join(''))
+        
+        if (iteration >= text.length) {
+          clearInterval(interval)
+        }
+        
+        iteration += 1/3
       }, scrambleSpeed)
     }, delay)
 
@@ -47,7 +44,7 @@ const ScrambleText = ({
       clearTimeout(timeout)
       clearInterval(interval)
     }
-  }, [text, scrambleSpeed, delay])
+  }, [text, scrambleSpeed, delay, characters])
 
   return (
     <span className={className}>

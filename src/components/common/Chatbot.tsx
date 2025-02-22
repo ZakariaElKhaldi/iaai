@@ -12,14 +12,14 @@ interface ChatbotProps {
   isOpen?: boolean
   onClose?: () => void
   variant?: 'floating' | 'fullpage'
-  context?: string
 }
 
-const Chatbot = ({ isOpen = false, onClose, variant = 'floating', context }: ChatbotProps) => {
+const Chatbot = ({ isOpen = false, onClose, variant = 'floating' }: ChatbotProps) => {
   const [messages, setMessages] = useState<Message[]>([])
-  const [inputValue, setInputValue] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
+  const [input, setInput] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -30,18 +30,18 @@ const Chatbot = ({ isOpen = false, onClose, variant = 'floating', context }: Cha
   }, [messages])
 
   const handleSendMessage = async () => {
-    if (!inputValue.trim()) return
+    if (!input.trim()) return
 
     const userMessage: Message = {
       id: Date.now(),
-      text: inputValue,
+      text: input,
       sender: 'user',
       timestamp: new Date()
     }
 
     setMessages(prev => [...prev, userMessage])
-    setInputValue('')
-    setIsTyping(true)
+    setInput('')
+    setIsLoading(true)
 
     // Simulate bot response
     setTimeout(() => {
@@ -52,7 +52,7 @@ const Chatbot = ({ isOpen = false, onClose, variant = 'floating', context }: Cha
         timestamp: new Date()
       }
       setMessages(prev => [...prev, botMessage])
-      setIsTyping(false)
+      setIsLoading(false)
     }, 1000)
   }
 
@@ -132,7 +132,7 @@ const Chatbot = ({ isOpen = false, onClose, variant = 'floating', context }: Cha
               </div>
             </motion.div>
           ))}
-          {isTyping && (
+          {isLoading && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -152,16 +152,17 @@ const Chatbot = ({ isOpen = false, onClose, variant = 'floating', context }: Cha
         <div className="p-4 border-t border-slate-700 bg-slate-800/95 backdrop-blur-sm">
           <div className="flex space-x-2">
             <textarea
-              value={inputValue}
-              onChange={e => setInputValue(e.target.value)}
+              value={input}
+              onChange={e => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type your message..."
               className="flex-1 bg-slate-700 text-white placeholder-slate-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               rows={1}
+              ref={inputRef}
             />
             <button
               onClick={handleSendMessage}
-              disabled={!inputValue.trim()}
+              disabled={!input.trim()}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Send

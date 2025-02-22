@@ -116,8 +116,8 @@ const Practice = () => {
               
               {/* Code Editor */}
               <CodeEditor
-                initialValue={code}
-                onChange={setCode}
+                value={code}
+                onChange={(value: string | undefined) => setCode(value || '')}
                 language="python"
                 className="min-h-[500px]"
               />
@@ -171,7 +171,6 @@ const Practice = () => {
         <Chatbot
           isOpen={isChatbotOpen}
           onClose={() => setIsChatbotOpen(false)}
-          context={`Exercise: ${selectedExercise.title}`}
         />
       </div>
     )
@@ -313,6 +312,10 @@ const Practice = () => {
           </motion.div>
         </div>
       </div>
+      <Chatbot
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+      />
     </div>
   )
 }

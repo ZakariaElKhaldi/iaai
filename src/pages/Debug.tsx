@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { theme, services } from '../config/theme'
 import { publicRoutes, protectedRoutes, adminRoutes } from '../config/routes'
 import { useApp } from '../context/AppContext'

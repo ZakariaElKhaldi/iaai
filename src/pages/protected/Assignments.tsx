@@ -55,27 +55,6 @@ const Assignments = () => {
     return assignment.status === filter
   })
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-500/20 text-green-400'
-      case 'in_progress':
-        return 'bg-yellow-500/20 text-yellow-400'
-      case 'pending':
-        return 'bg-blue-500/20 text-blue-400'
-      default:
-        return 'bg-slate-500/20 text-slate-400'
-    }
-  }
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
-
   const handleAssignmentClick = (assignment: typeof assignments[0]) => {
     setSelectedAssignment(assignment)
   }
@@ -182,7 +161,6 @@ const Assignments = () => {
         <Chatbot
           isOpen={isChatbotOpen}
           onClose={() => setIsChatbotOpen(false)}
-          context={`Assignment: ${selectedAssignment.title}`}
         />
       </div>
     )

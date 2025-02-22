@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { theme } from '../../config/theme'
-import { useApp } from '../../context/AppContext'
 import LoadingSpinner from './LoadingSpinner'
 
 interface SearchResult {
@@ -21,7 +20,6 @@ const GlobalSearch: React.FC = () => {
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const { dispatch } = useApp()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
