@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { theme, services } from '../config/theme'
+import { theme } from '../config/theme'
 import ServicesGrid from '../components/sections/ServicesGrid'
 
 const fadeInUp = {
@@ -190,12 +189,12 @@ const Home = () => {
                   { number: '95%', label: 'Success Rate' },
                   { number: '200+', label: 'AI Projects' },
                   { number: '24/7', label: 'Expert Support' }
-                ].map((stat, index) => (
+                ].map((stat) => (
                   <div key={stat.label} className="text-center p-4 rounded-lg bg-slate-800/50 backdrop-blur-sm">
                     <motion.div
                       initial={{ scale: 0.5, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: index * 0.1 + 0.5 }}
+                      transition={{ delay: 0.5 }}
                     >
                       <h3 className={`${theme.typography.size['2xl']} ${theme.typography.weight.bold} ${theme.colors.primary.text}`}>
                         {stat.number}
@@ -299,7 +298,7 @@ const Home = () => {
                 title: 'Practical Experience',
                 description: 'Apply your knowledge through hands-on projects'
               }
-            ].map((feature, index) => (
+            ].map((feature) => (
               <motion.div
                 key={feature.title}
                 variants={fadeInUp}
@@ -369,7 +368,7 @@ const Home = () => {
               { number: '50+', label: 'Expert Instructors' },
               { number: '95%', label: 'Success Rate' },
               { number: '24/7', label: 'Support Available' }
-            ].map((stat, index) => (
+            ].map((stat) => (
               <motion.div
                 key={stat.label}
                 variants={fadeInUp}
@@ -435,7 +434,7 @@ const Home = () => {
                 role: "Robotics Engineer",
                 image: "👩‍🔧"
               }
-            ].map((testimonial, index) => (
+            ].map((testimonial) => (
               <motion.div
                 key={testimonial.author}
                 variants={fadeInUp}
@@ -521,7 +520,7 @@ const Home = () => {
                 role: "Community Director",
                 image: "👨‍💼"
               }
-            ].map((member, index) => (
+            ].map((member) => (
               <motion.div
                 key={member.author}
                 variants={fadeInUp}

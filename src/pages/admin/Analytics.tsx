@@ -104,7 +104,7 @@ const Analytics = () => {
           >
             <h2 className="text-xl font-semibold text-white mb-4">Top Courses</h2>
             <div className="space-y-4">
-              {topCourses.map((course, index) => (
+              {topCourses.map((course) => (
                 <div
                   key={course.name}
                   className="p-4 bg-slate-700/30 rounded-lg"

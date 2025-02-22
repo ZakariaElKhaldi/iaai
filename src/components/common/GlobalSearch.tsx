@@ -21,7 +21,7 @@ const GlobalSearch: React.FC = () => {
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const { state } = useApp()
+  const { dispatch } = useApp()
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

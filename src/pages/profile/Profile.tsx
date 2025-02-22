@@ -1,8 +1,7 @@
+import React from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
 import Breadcrumb from '../../components/common/Breadcrumb'
-import { useApp } from '../../context/AppContext'
 
 // Mock user data
 const userData = {
@@ -68,9 +67,7 @@ interface Settings {
   }
 }
 
-const Profile = () => {
-  const navigate = useNavigate()
-  const { state, dispatch } = useApp()
+const Profile: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview')
   const [isEditing, setIsEditing] = useState(false)
   const [settings, setSettings] = useState<Settings>({
@@ -85,11 +82,6 @@ const Profile = () => {
       showAchievements: true
     }
   })
-
-  const handleLogout = () => {
-    dispatch({ type: 'RESET_STATE' })
-    navigate('/')
-  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target

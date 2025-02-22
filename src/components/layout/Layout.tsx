@@ -45,7 +45,7 @@ const Layout = ({ children }: LayoutProps) => {
       )}
 
       {/* Main Content */}
-      <div className="relative z-10">
+      <div className="relative">
         {/* Navigation */}
         {showNav && (
           <Navbar 
@@ -60,7 +60,9 @@ const Layout = ({ children }: LayoutProps) => {
         {/* Page Content with Transitions */}
         <AnimatePresence mode="wait">
           <PageTransition key={location.pathname}>
-            {children}
+            <main className="min-h-screen">
+              {children}
+            </main>
           </PageTransition>
         </AnimatePresence>
 

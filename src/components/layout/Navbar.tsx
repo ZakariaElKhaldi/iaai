@@ -6,19 +6,6 @@ import { debounce } from 'lodash'
 import { theme } from '../../config/theme'
 import LoadingSpinner from '../common/LoadingSpinner'
 
-// Constants for styling
-const STYLE_CONSTANTS = {
-  transition: { duration: 0.2 },
-  colors: {
-    primary: 'bg-blue-600',
-    primaryHover: 'hover:bg-blue-700',
-    secondary: 'bg-slate-800',
-    secondaryHover: 'hover:bg-slate-700',
-    text: 'text-slate-200',
-    textHover: 'hover:text-white'
-  }
-}
-
 // Types for navigation items
 interface NavItem {
   name: string
@@ -62,7 +49,7 @@ const Navbar = ({ variant = 'public' }: NavbarProps) => {
   const [isLoggingOut, setIsLoggingOut] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const { state, dispatch } = useApp()
+  const { dispatch } = useApp()
 
   // Debounced scroll handler
   const handleScroll = useCallback(
@@ -95,17 +82,6 @@ const Navbar = ({ variant = 'public' }: NavbarProps) => {
       console.error('Logout failed:', error)
     } finally {
       setIsLoggingOut(false)
-    }
-  }
-
-  const getNavItems = () => {
-    switch (variant) {
-      case 'protected':
-        return protectedNavItems
-      case 'admin':
-        return adminNavItems
-      default:
-        return publicNavItems
     }
   }
 
@@ -265,10 +241,10 @@ const Navbar = ({ variant = 'public' }: NavbarProps) => {
       role="navigation"
       aria-label="Main navigation"
       className={`
-        fixed w-full z-50 
-        ${scrolled ? theme.spacing.nav.padding.scrolled : theme.spacing.nav.padding.default}
-        ${variant === 'admin' ? theme.colors.border.admin : theme.colors.border.primary}
-        transition-all backdrop-blur-sm
+        sticky top-0 w-full z-50 
+        ${scrolled ? 'py-2 bg-slate-900/95' : 'py-4 bg-transparent'}
+        ${variant === 'admin' ? theme.colors.border.admin : 'border-b border-slate-800/50'}
+        transition-all duration-300 backdrop-blur-sm
       `}
       initial={{ y: 0 }}
       animate={{ y: visible ? 0 : -100 }}
